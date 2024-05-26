@@ -27,7 +27,7 @@ function App() {
       <Show above='lg'>
         <GridItem area='aside' paddingX={5}>
           {/* 将子组件所选择的genre传递到父组件 */}
-          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList selectedGenre={selecedGenre} onSelectGenre={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       </Show>
       <GridItem area='main'>
