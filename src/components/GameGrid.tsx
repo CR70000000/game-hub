@@ -3,9 +3,19 @@ import useGames from '../hooks/useGame'
 import GameCard from './GameCard'
 import GameCardSkeleton from './GameCardSkeleton'
 import GameCardContainer from './GameCardContainer'
+import { Genre } from '../hooks/useGenres'
 
-function GameGrid() {
-  const { data, error, isLoading } = useGames()
+// 定义组件的props类型
+interface Props {
+  // 当前所选择的游戏类型
+  // 其中 Genre | null 表示该属性可以为 null
+  selectedGenre: Genre | null
+}
+
+function GameGrid({ selectedGenre }: Props) {
+  // 使用 useGames 钩子来获取游戏数据
+  // 并传递当前所选择的游戏类型作为参数
+  const { data, error, isLoading } = useGames(selectedGenre)
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
   return (
@@ -19,12 +29,12 @@ function GameGrid() {
         {isLoading &&
           skeletons.map((skeleton) => (
             <GameCardContainer key={skeleton}>
-              <GameCardSkeleton key={skeleton} />
+              <GameCardSkeleton />
             </GameCardContainer>
           ))}
         {data.map((game) => (
           <GameCardContainer key={game.id}>
-            <GameCard key={game.id} game={game} />
+            <GameCard game={game} />
           </GameCardContainer>
         ))}
       </SimpleGrid>
