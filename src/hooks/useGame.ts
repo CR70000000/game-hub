@@ -1,3 +1,4 @@
+import { GameQuery } from '../App'
 import useData from './useData'
 import { Genre } from './useGenres'
 
@@ -18,19 +19,16 @@ export interface Game {
 // 获取游戏列表
 // 接受一个参数 selectedGenre，类型为 Genre | null
 // 用于记录选择的游戏类型
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     '/games',
     {
       params: {
-        genres: selectedGenre?.id,
-        platforms: selectedPlatform?.id,
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
       },
     },
-    [selectedGenre?.id, selectedPlatform?.id]
+    [gameQuery]
   )
 
 export default useGames
