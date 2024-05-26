@@ -4,6 +4,7 @@ import GameGrid from './components/GameGrid'
 import GenreList from './components/GenreList'
 import { useState } from 'react'
 import { Genre } from './hooks/useGenres'
+import PlatformSelector from './components/PlatformSelector'
 
 function App() {
   // 存储选中的游戏类型（用于实现点击筛选功能）
@@ -31,6 +32,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area='main'>
+        <PlatformSelector />
         <GameGrid selectedGenre={selecedGenre} />
       </GridItem>
     </Grid>
