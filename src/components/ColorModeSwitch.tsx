@@ -5,8 +5,12 @@ function ColorModeSwitch() {
 
   return (
     <HStack>
-      <Switch colorScheme='green' isChecked={colorMode === 'dark'} onChange={toggleColorMode} />
-      <Text>深色模式</Text>
+      <Switch
+        colorScheme='green'
+        isChecked={colorMode === 'dark'}
+        onChange={toggleColorMode}
+      />
+      <Text whiteSpace='nowrap'>深色模式</Text>
     </HStack>
   )
 }
