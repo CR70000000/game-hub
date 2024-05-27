@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -26,29 +27,37 @@ function GenreList({ selectedGenre, onSelectGenre }: Props) {
   if (error) return null
 
   return (
-    <List>
-      {isLoading &&
-        skeletons.map((skeleton) => <GameListSkeleton key={skeleton} />)}
-      {data.map((genre) => (
-        <ListItem key={genre.id} paddingY='5px'>
-          <HStack>
-            <Image
-              boxSize='32px'
-              borderRadius={8}
-              src={getCroppedImageUrl(genre.image_background)}
-            />
-            <Button
-              fontWeight={selectedGenre?.id === genre.id ? 'bold' : 'normal'}
-              onClick={() => onSelectGenre(genre)}
-              fontSize='lg'
-              variant='link'
-            >
-              {genre.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading fontSize='2xl' marginBottom={3}>
+        分类
+      </Heading>
+      <List>
+        {isLoading &&
+          skeletons.map((skeleton) => <GameListSkeleton key={skeleton} />)}
+        {data.map((genre) => (
+          <ListItem key={genre.id} paddingY='5px'>
+            <HStack>
+              <Image
+                boxSize='32px'
+                borderRadius={8}
+                objectFit='cover'
+                src={getCroppedImageUrl(genre.image_background)}
+              />
+              <Button
+                whiteSpace='normal'
+                textAlign='left'
+                fontWeight={selectedGenre?.id === genre.id ? 'bold' : 'normal'}
+                onClick={() => onSelectGenre(genre)}
+                fontSize='lg'
+                variant='link'
+              >
+                {genre.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   )
 }
 
