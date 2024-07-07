@@ -12,7 +12,7 @@ function GameHeading({ gameQuery }: Props) {
   // Xbox Action 游戏
   const heading = `${gameQuery.platform?.name || ''} ${
     gameQuery.genre?.name || ''
-  } 陈寒冰`
+  } `
   return <Heading as='h1' marginY={5} fontSize='5xl'>{heading}</Heading>
 }
 
